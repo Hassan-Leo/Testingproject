@@ -7,12 +7,12 @@ chai.use(chaihttp);
 
 raw= {"email":"muhammadrafay151@gmail.com","password":"123123"}
 
-server_url="http://certifis.herokuapp.com/api"
+server="http://certifis.herokuapp.com/api"
 
 describe("POST Login API Testing",() =>{
     describe("When the authentication is successful", () => {
         it("Response Status of should have 200 and be a object",(done) => {
-            chai.request(server_url)
+            chai.request(server)
                 .post("/account/login")
                 .type('json')
                 .send(raw)
@@ -24,7 +24,7 @@ describe("POST Login API Testing",() =>{
             done();
         }); 
         it("Object contain all the keys requried", (done) => {
-            chai.request(server_url)
+            chai.request(server)
                 .post("/account/login")
                 .type('json')
                 .send(raw)
@@ -36,7 +36,7 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("Object contains data in correct data type", (done) => {
-            chai.request(server_url)
+            chai.request(server)
                 .post("/account/login")
                 .type('json')
                 .send(raw)
@@ -55,7 +55,7 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("To check length of array and objects", (done) => {
-            chai.request(server_url)
+            chai.request(server)
                 .post("/account/login")
                 .send(raw)
                 .end((err,response) => {
@@ -66,7 +66,7 @@ describe("POST Login API Testing",() =>{
     });
     describe("When the authorization is failed", () =>{
         it("Response should have status 401 and be a object with wrong email", (done) =>{
-            chai.request(server_url)
+            chai.request(server)
                 .post("/account/login")
                 .type('json')
                 .send(raw)
@@ -78,7 +78,7 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("Response should have status 401 and be a object with wrong password", (done) =>{
-            chai.request(server_url)
+            chai.request(server)
                 .post("/account/login")
                 .type('json')
                 .send(raw)
@@ -90,7 +90,7 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("Contains a message with wrong email", (done) => {
-            chai.request(server_url)
+            chai.request(server)
                 .post("/account/login")
                 .type("json")
                 .send(raw)
@@ -100,7 +100,7 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("Contains a message with wrong passwrod", (done) => {
-            chai.request(server_url)
+            chai.request(server)
                 .post("/account/login")
                 .type("json")
                 .send(raw)

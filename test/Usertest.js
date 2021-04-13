@@ -7,12 +7,12 @@ chai.use(chaihttp);
 auth={
     "Authentication":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MTgxNjg2MjMsImV4cCI6MTYxODM0MTQyM30.V8nzsm3xlmPuO-YtEjLrpiHyUW5tBW2YaERocTRZrQg"
 } 
-server_url="http://certifis.herokuapp.com/api"
+server="http://certifis.herokuapp.com/api"
 
 describe("Logged User Details Testing", () => {
     describe("To view the users details",() => {
         it("To Get Status 200 and retrieve an object", (done) =>{
-            chai.request(server_url)
+            chai.request(server)
                 .get("/users")
                 .type('json')
                 .send(auth)
@@ -24,7 +24,7 @@ describe("Logged User Details Testing", () => {
             done();
         });
         it("To check the object in the retreived data", (done) =>{
-            chai.request(server_url)
+            chai.request(server)
                 .get("/users")
                 .type('json')
                 .send(auth)
@@ -40,7 +40,7 @@ describe("Logged User Details Testing", () => {
             done();
         });
         it("To check datatype of each property in retreived data", (done) =>{
-            chai.request(server_url)
+            chai.request(server)
                 .get("/users")
                 .type('json')
                 .send(auth)
@@ -63,7 +63,7 @@ describe("Logged User Details Testing", () => {
     });
     describe("To check when non existing trys to retreive data", ()=> {
         it("To get status 401 and object be null", (done)=> {
-            chai.request(server_url)
+            chai.request(server)
                 .get("/users")
                 .type('json')
                 .send(auth)
