@@ -16,5 +16,16 @@
     "chai-http": "^4.3.0",
     "mocha": "^8.3.2"
   },
-  "description": ""
+  "description": "FYP Testing # Command to run  npm run test",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hassan-Leo/Testingproject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hassan-Leo/Testingproject/issues"
+  },
+  "homepage": "https://github.com/Hassan-Leo/Testingproject#readme"
 }
