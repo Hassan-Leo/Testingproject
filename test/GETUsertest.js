@@ -5,7 +5,7 @@ let chaihttp = require("chai-http");
 chai.should();
 chai.use(chaihttp);
 auth="Authorization"
-token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MTk2OTc4MTIsImV4cCI6MTYxOTg3MDYxMn0.SsE4FGqjrwGRBVSCNGZOvIRe84nk5SI1G6JeZ0FdWnI"
+token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MjAyMDUxMjQsImV4cCI6MTYyMDM3NzkyNH0.NCykIRUHYwnMe_0JphMgEUYymc4SawmE63blNBsoAkI"
 token1="Bearer eyJhbGciOiJIUzI1NaWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MTg1ODU0OTgsImV4cCI6MTYxODc1ODI5OH0.tDWO5PrvlfyTeMz0pJuYNh46ULIY7osCXRuB3_O_7jU"
 
 server="http://certifis.herokuapp.com/api"
@@ -67,6 +67,7 @@ describe("Logged User Details Testing for Super Admin", () => {
                 .end((err,resp) =>{
                     expect(resp).to.have.status(403);
                     expect(resp.body).to.be.empty;
+                    expect(resp).to.not.have.status(200);
                 })
             done();
         });

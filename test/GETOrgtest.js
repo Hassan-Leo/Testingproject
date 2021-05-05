@@ -8,8 +8,8 @@ chai.use(chaihttp);
 
 auth="Authorization"
 
-token1="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MjAwNDcyMzEsImV4cCI6MTYyMDIyMDAzMX0.ni04-5q_KU9yTIyzKTfQw_QaPaMCR1DB0efIM-Nt0z8"
-token2="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MTk3MTAzMzksImV4cCI6MTYxOTg4MzEzOX0.MGpfX8kwxDBIESotNDPVofq-2Z40Ea7kLAfETpOZ8gk"
+token1="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmRjZDk1NDVhZjM0NTg5ZDY1MDgiLCJlbWFpbCI6Im11aGFtbWFkYWFtaXIuYWoxQGdtYWlsLmNvbSIsIm5hbWUiOiJNdWhhbW1hZCBBYW1pciIsInJvbGVzIjpbIklzc3VlciIsIkFkbWluIl0sIm9yZ19pZCI6IjYwNjA2ZDhmOTU0NWFmMzQ1ODlkNjUwNyIsImlhdCI6MTYyMDIwNTE5MCwiZXhwIjoxNjIwMzc3OTkwfQ.FDLdQmunI-LiuksOFmLF-YXfAnq7UJJXJ-7ya44wlNU"
+token2="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MjAyMDUxMjQsImV4cCI6MTYyMDM3NzkyNH0.NCykIRUHYwnMe_0JphMgEUYymc4SawmE63blNBsoAkI"
 
 raw1= {"email":"muhammadaamir.aj1@gmail.com","password":"123123"}
 raw2={"email":"muhammadrafay151@gmail.com", "password":"123123"}
@@ -19,7 +19,7 @@ describe("The testing of the data retrived through Organization API", ()=> {
         it("To check the status of the response", (done) => {
             chai.request(data.item[16].name)
             .get("")
-            .set(auth,token1)
+            .set(auth,token2)
             .end((err,resp) =>{
                 resp.should.have.status(200);
                 resp.body.should.be.a('Object');
@@ -29,7 +29,7 @@ describe("The testing of the data retrived through Organization API", ()=> {
         it("To response object should contain the required properties",(done)=>{
             chai.request(data.item[16].name)
             .get("")
-            .set(auth,token1)
+            .set(auth,token2)
             .end((err,resp) =>{
                 resp.body.should.have.property("totalcount");
                 resp.body.should.have.property("list");
@@ -45,7 +45,7 @@ describe("The testing of the data retrived through Organization API", ()=> {
         it("To Check the data type and data structures of the properties in response",(done)=>{
             chai.request(data.item[16].name)
             .get("")
-            .set(auth,token1)
+            .set(auth,token2)
             .end((err,resp) =>{
                 resp.body.should.have.property("totalcount").to.be.a('number');
                 resp.body.should.have.property("list").to.be.a('Array');
@@ -72,7 +72,7 @@ describe("The testing of the data retrived through Organization API", ()=> {
         it("To Check the values of properties", (done)=> {
             chai.request(data.item[16].name)
             .get("")
-            .set(auth,token)
+            .set(auth,token2)
             .end((err,resp) =>{
                 if (resp.body.totalcount > 0){
                     for(i=0;i<resp.body.totalcount;i++){
