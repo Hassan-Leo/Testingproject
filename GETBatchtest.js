@@ -1,8 +1,8 @@
-let data=require("../Ecert.postman_collection.json");
+let data=require("./Ecert.postman_collection.json");
 let chai = require("chai");
 let expect = require("chai").expect;
 let chaihttp = require("chai-http");
-const token_data=require("../Fetchtoken");
+const token_data=require("./Fetchtoken");
 
 chai.should();
 chai.use(chaihttp);
@@ -37,9 +37,12 @@ describe("Testing Batch Api for data retrival",()=> {
                 expect(resp.body).to.have.property("totalcount");
                 if (resp.body.totalcount>0){
                     for (i=0;i<resp.body.totalcount;i++){
-                        expect(resp.body.list[i]).to.have.all.keys("createdby","publish","created_date","_id","batch_name","title","description","instructor_name","logo","signature","template_id","updatedby","__v");
+                        expect(resp.body.list[i]).to.have.all.keys("createdby","expiry_date","publish","created_date","_id","batch_name","title","description","instructor_name","logo","signature","template_id","updatedby","__v");
                         expect(resp.body.list[i].createdby).to.have.keys("name","email","org_name","org_id");
                         expect(resp.body.list[i].publish).to.have.keys("status","processing");
+                        for (j=0;j<resp.body.list[i].updatedby.length;j++){
+                            expect(resp.body.list[i].updatedby[j]).to.have.keys("name","email","Date");
+                        }
                     }
                 }
             })
@@ -56,12 +59,30 @@ describe("Testing Batch Api for data retrival",()=> {
                     for (i=0;i<resp.body.totalcount;i++){
                         expect(resp.body.list[i].createdby).to.have.keys("name","email","org_name","org_id").to.be.string;
                         expect(resp.body.list[i].publish).to.have.property("status").to.be.a('boolean');
-                        expect(resp.body.list[i].publish).to.have.property("status").to.be.a('boolean');
-                        expect(resp.body.list[i].publish).to.have.property("status").to.be.a('boolean');
+                        expect(resp.body.list[i].publish).to.have.property("processing").to.be.a('boolean');
+                        expect(resp.body.list[i].createdby).to.be.a('object');
+                        expect(resp.body.list[i].publish).to.be.a('object');
+                        expect(resp.body)
+                        for (j=0;j<resp.body.list[i].updatedby.length;j++){
+                            expect(resp.body.list[i].updatedby[j]).to.have.keys("name","email","Date").to.be.string;
+                        }
                     }
                 }
+/*              else{
+                    expect(resp.body.list.length).to.be.eq(resp.body.totalcount);
+                } */
             })
             done();
         });
+        it("To Check the values of the properties", (done)=>{
+            chai.request(data.item[7].name)
+            .get("")
+            .set(auth,token1)
+            .end((err,resp)=> {
+                expect(resp.body.totalcount).to.be.greaterThanOrEqual(0);
+                expect()
+            });
+            done();
+        })
     })
 })

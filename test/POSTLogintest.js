@@ -2,6 +2,7 @@ let chai = require("chai");
 let expect = require("chai").expect;
 let chaihttp = require("chai-http");
 let data_server= require("../Ecert.postman_collection.json")
+const token_data=require("../Fetchtoken")
 
 chai.should();
 chai.use(chaihttp);
