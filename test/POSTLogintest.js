@@ -1,6 +1,7 @@
 let chai = require("chai");
 let expect = require("chai").expect;
 let chaihttp = require("chai-http");
+let data_server= require("../Ecert.postman_collection.json")
 
 chai.should();
 chai.use(chaihttp);
@@ -9,13 +10,11 @@ raw= {"email":"muhammadrafay151@gmail.com","password":"123123"}
 raw_1= {"email":"muhammadray151@gmail.com","password":"123123"}
 raw_2= {"email":"muhammadrafay151@gmail.com","password":"1233"}
 
-server="http://certifis.herokuapp.com/api"
-
-describe("POST Login API Testing",() =>{
+describe("POST Login API Testing for Superadmin User",() =>{
     describe("When the authentication is successful", () => {
         it("Response Status of should have 200 and be a object",(done) => {
-            chai.request(server)
-                .post("/account/login")
+            chai.request(data_server.item[0].name)
+                .post("")
                 .type('json')
                 .send(raw)
                 .end((err,resp)=>{
@@ -26,8 +25,8 @@ describe("POST Login API Testing",() =>{
             done();
         }); 
         it("Object contain all the keys requried", (done) => {
-            chai.request(server)
-                .post("/account/login")
+            chai.request(data_server.item[0].name)
+                .post("")
                 .type('json')
                 .send(raw)
                 .end((err,resp) =>{
@@ -38,8 +37,8 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("Object contains in correct type", (done) => {
-            chai.request(server)
-                .post("/account/login")
+            chai.request(data_server.item[0].name)
+                .post("")
                 .type('json')
                 .send(raw)
                 .end((err,resp) => {
@@ -57,8 +56,8 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("To check length of array and objects", (done) => {
-            chai.request(server)
-                .post("/account/login")
+            chai.request(data_server.item[0].name)
+                .post("")
                 .type('json')
                 .send(raw)
                 .end((err,resp) => {
@@ -69,8 +68,8 @@ describe("POST Login API Testing",() =>{
     });
     describe("When the authorization is failed", () =>{
         it("Response should have status 401 and be a object with wrong email", (done) =>{
-            chai.request(server)
-                .post("/account/login")
+            chai.request(data_server.item[0].name)
+                .post("")
                 .type('json')
                 .send(raw_1)
                 .end((err,resp) =>{
@@ -81,8 +80,8 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("Response should have status 401 and be a object with wrong password", (done) =>{
-            chai.request(server)
-                .post("/account/login")
+            chai.request(data_server.item[0].name)
+                .post("")
                 .type('json')
                 .send(raw_2)
                 .end((err,resp) =>{
@@ -93,8 +92,8 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("Contains a message with wrong email", (done) => {
-            chai.request(server)
-                .post("/account/login")
+            chai.request(data_server.item[0].name)
+                .post("")
                 .type("json")
                 .send(raw_1)
                 .end((err, resp) => {
@@ -103,8 +102,8 @@ describe("POST Login API Testing",() =>{
             done();
         });
         it("Contains a message with wrong passwrod", (done) => {
-            chai.request(server)
-                .post("/account/login")
+            chai.request(data_server.item[0].name)
+                .post("")
                 .type("json")
                 .send(raw_2)
                 .end((err, resp) => {

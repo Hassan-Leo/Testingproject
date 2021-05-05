@@ -1,15 +1,18 @@
 const fetch = require("node-fetch");
-var obj =[];
-var data= {
-    "email":"iyaqoob62@gmail.com",
-    "password":"123123"
-}
+var obj =null;
 
-fetch('http://certifis.herokuapp.com/api/account/login', {
+async function gettoken(email, pass) {
+  var data1 = {
+    "email": email,
+    "password": pass
+  }
+  res = await fetch('http://certifis.herokuapp.com/api/account/login', {
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify(data1),
     headers: { 'Content-Type': 'application/json' }
-}).then(res => res.json())
-  .then(data => obj.push(data));
+  })
+  obj=await res.json()
+  return obj.token
+}
+module.exports.gettoken=gettoken;
 
-console.log(obj)
