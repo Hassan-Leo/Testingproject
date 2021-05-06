@@ -2,10 +2,11 @@ let data=require("../Ecert.postman_collection.json");
 let chai = require("chai");
 let expect = require("chai").expect;
 let chaihttp = require("chai-http");
+const token_data=require("../Fetchtoken");
 
 chai.should();
 chai.use(chaihttp);
-server="http://certifis.herokuapp.com/api"
+
 auth="Authorization"
 token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNzNlNGIyYmVmZTQ4NDg4NGMyMTAiLCJlbWFpbCI6Iml5YXFvb2I2MkBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYW1tYWQgSXNtYWlsIiwicm9sZXMiOlsiSXNzdWVyIiwiQWRtaW4iXSwib3JnX2lkIjoiNjA2MDZkMGE5NTQ1YWYzNDU4OWQ2NTA1IiwiaWF0IjoxNjIwMjA1NDgwLCJleHAiOjE2MjAzNzgyODB9.fIC7kDHtvvcbnggRG2nYD7oWbIsAqdM6gUdrBsftjY4"
 token1="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZX"

@@ -6,6 +6,7 @@ const token_data=require("../Fetchtoken");
 
 chai.should();
 chai.use(chaihttp);
+
 auth="Authorization"
 raw={"email":"muhammadrafay151@gmail.com","password":"123123"}
 token ="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MjAyMDUxMjQsImV4cCI6MTYyMDM3NzkyNH0.NCykIRUHYwnMe_0JphMgEUYymc4SawmE63blNBsoAkI"

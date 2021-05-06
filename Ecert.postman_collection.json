@@ -322,7 +322,7 @@
 			"response": []
 		},
 		{
-			"name": "http://certifis.herokuapp.com/api/bcert/5fa380390285b37030e62da4/5fa3a38bb9a7235cd8e342b3",
+			"name": "http://certifis.herokuapp.com/api/bcert",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -337,7 +337,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://certifis.herokuapp.com/api/bcert/5fa380390285b37030e62da4/5fa3a38bb9a7235cd8e342b3",
+					"raw": "http://certifis.herokuapp.com/api/bcert",
 					"protocol": "http",
 					"host": [
 						"localhost"

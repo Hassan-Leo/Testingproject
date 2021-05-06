@@ -11,7 +11,7 @@ async function gettoken(email, pass) {
     body: JSON.stringify(data1),
     headers: { 'Content-Type': 'application/json' }
   })
-  obj=await res.json()
+  obj=res.json()
   return obj.token
 }
 module.exports.gettoken=gettoken;

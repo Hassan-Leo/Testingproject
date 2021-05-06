@@ -1,8 +1,8 @@
-let data=require("./Ecert.postman_collection.json");
+let data=require("../Ecert.postman_collection.json");
 let chai = require("chai");
 let expect = require("chai").expect;
 let chaihttp = require("chai-http");
-const token_data=require("./Fetchtoken");
+const token_data=require("../Fetchtoken");
 
 chai.should();
 chai.use(chaihttp);
@@ -20,7 +20,7 @@ describe("Testing Batch Api for data retrival",()=> {
             chai.request(data.item[7].name)
             .get("")
             .set(auth,token1)
-            .end((err,resp)=> {
+            .end((err,resp)=>{
                 expect(resp).to.have.status(200);
                 expect(resp.body).to.not.be.empty;
                 expect(resp.body).to.be.a('Object');
@@ -33,7 +33,7 @@ describe("Testing Batch Api for data retrival",()=> {
             .get("")
             .set(auth,token1)
             .end((err,resp)=>{
-                expect(resp.body).to.have.ownProperty("list");
+                expect(resp.body).to.have.property("list");
                 expect(resp.body).to.have.property("totalcount");
                 if (resp.body.totalcount>0){
                     for (i=0;i<resp.body.totalcount;i++){
@@ -53,7 +53,6 @@ describe("Testing Batch Api for data retrival",()=> {
             .get("")
             .set(auth,token1)
             .end((err,resp)=> {
-                expect(resp.body).to.have.ownProperty("list").to.be.a('Array');
                 expect(resp.body).to.have.property("totalcount").to.be.a("number");
                 if (resp.body.totalcount>0){
                     for (i=0;i<resp.body.totalcount;i++){
@@ -62,15 +61,27 @@ describe("Testing Batch Api for data retrival",()=> {
                         expect(resp.body.list[i].publish).to.have.property("processing").to.be.a('boolean');
                         expect(resp.body.list[i].createdby).to.be.a('object');
                         expect(resp.body.list[i].publish).to.be.a('object');
-                        expect(resp.body)
+                        if(resp.body.list[i].expiry_date == null){
+                            expect(resp.body.list[i].expiry_date).to.be.null;
+                        }
+                        else{
+                            expect(resp.body.list[i].expiry_date).to.be.a('string');
+                        }
+                        expect(resp.body.list[i].created_date).to.be.a('string');
+                        expect(resp.body.list[i]._id).to.be.a('string');
+                        expect(resp.body.list[i].title).to.be.a('string');
+                        expect(resp.body.list[i].batch_name).to.be.a('string');
+                        expect(resp.body.list[i].description).to.be.a('string');
+                        expect(resp.body.list[i].logo).to.be.a('string');
+                        expect(resp.body.list[i].signature).to.be.a('string');
+                        expect(resp.body.list[i].instructor_name).to.be.a('string');
+                        expect(resp.body.list[i].template_id).to.be.a('string');
+                        expect(resp.body.list[i].__v).to.be.a('number');
                         for (j=0;j<resp.body.list[i].updatedby.length;j++){
                             expect(resp.body.list[i].updatedby[j]).to.have.keys("name","email","Date").to.be.string;
                         }
                     }
                 }
-/*              else{
-                    expect(resp.body.list.length).to.be.eq(resp.body.totalcount);
-                } */
             })
             done();
         });
@@ -80,7 +91,13 @@ describe("Testing Batch Api for data retrival",()=> {
             .set(auth,token1)
             .end((err,resp)=> {
                 expect(resp.body.totalcount).to.be.greaterThanOrEqual(0);
-                expect()
+                if (resp.body.totalcount>0){
+                    for (i=0;i<resp.body.totalcount;i++){
+                        expect(resp.body.list[i].__v).to.be.equal(0);
+                        expect(resp.body.list[i].publish).to.have.property("status").to.be.a('boolean').to.be.false;
+                        expect(resp.body.list[i].publish).to.have.property("processing").to.be.a('boolean').to.be.false;
+                    }
+                }
             });
             done();
         })

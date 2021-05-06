@@ -21,7 +21,7 @@ raw_data={
     }
 }
 
-describe("",()=>{
+/* describe("",()=>{
     describe("",()=> {
         it("",(done)=>{
             chai.request(data.item[1].name)
@@ -34,4 +34,4 @@ describe("",()=>{
             done();
         })
     })
-})
+}) */
