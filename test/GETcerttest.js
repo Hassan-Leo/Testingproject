@@ -8,7 +8,7 @@ chai.should();
 chai.use(chaihttp);
 
 auth="Authorization"
-token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNzNlNGIyYmVmZTQ4NDg4NGMyMTAiLCJlbWFpbCI6Iml5YXFvb2I2MkBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYW1tYWQgSXNtYWlsIiwicm9sZXMiOlsiSXNzdWVyIiwiQWRtaW4iXSwib3JnX2lkIjoiNjA2MDZkMGE5NTQ1YWYzNDU4OWQ2NTA1IiwiaWF0IjoxNjIwMjA1NDgwLCJleHAiOjE2MjAzNzgyODB9.fIC7kDHtvvcbnggRG2nYD7oWbIsAqdM6gUdrBsftjY4"
+token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNzNlNGIyYmVmZTQ4NDg4NGMyMTAiLCJlbWFpbCI6Iml5YXFvb2I2MkBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYW1tYWQgSXNtYWlsIiwicm9sZXMiOlsiSXNzdWVyIiwiQWRtaW4iXSwib3JnX2lkIjoiNjA2MDZkMGE5NTQ1YWYzNDU4OWQ2NTA1IiwiaWF0IjoxNjIwNjg1Mjk5LCJleHAiOjE2MjA4NTgwOTl9.lxIKu5RhgEly7S4H4fM8pDOA5hTmWOeIcPMkmos4a2A"
 token1="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZX"
 raw= {"email":"iyaqoob62@gmail.com","password":"123123"}
 
@@ -42,7 +42,7 @@ describe("Testing the Certificate Retrival Data", ()=> {
             .get("")
             .set(auth, token)
             .end((err, resp)=>{
-                resp.body.list.should.be.a('Array');
+                resp.body.list.be.a('Array');
                 for(i=0;i<resp.body.totalcount;i++){
                     resp.body.list[i].should.have.property("issuedby").to.be.a('Object');
                     resp.body.list[i].should.have.property("publish").to.be.a('Object');

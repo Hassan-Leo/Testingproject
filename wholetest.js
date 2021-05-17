@@ -1,8 +1,8 @@
-let data=require("../Ecert.postman_collection.json");
+let data=require("./Ecert.postman_collection.json");
 let chai = require("chai");
 let expect = require("chai").expect;
 let chaihttp = require("chai-http");
-const token_data=require("../Fetchtoken");
+const token_data=require("./Fetchtoken");
 
 chai.should();
 chai.use(chaihttp);
@@ -18,10 +18,10 @@ describe("Testing the GET Batch Certificate retirved data",()=> {
     describe("When Authorized user access data testing the response",()=> {
         it("TO check the status of the response gotten",(done)=> {
             chai.request(data.item[11].name)
-            .get("/6097e6babdddc11f4c2d76f5")
+            .get("/608e9c18344e27305887ff22")
             .set(auth, token2)
             .end((err,resp)=> {
-                if(resp.body.empty != false){
+                if(resp.body.empty != true){
                     resp.should.have.status(200);
                     resp.should.not.have.status(403);
                     resp.body.should.be.a('Object');
@@ -36,13 +36,13 @@ describe("Testing the GET Batch Certificate retirved data",()=> {
         });
         it("To check the sturcture(properties) of the response got",(done)=> {
             chai.request(data.item[11].name)
-            .get("/6097e6babdddc11f4c2d76f5")
+            .get("/608e9c18344e27305887ff22")
             .set(auth, token2)
             .end((err,resp)=> {
                 if(resp.body.empty != true){
-/*                     resp.body.should.have.property("list");
+                    resp.body.should.have.property("list");
                     resp.body.should.have.property("batch");
-                    resp.body.should.have.property("totalcount"); */
+                    resp.body.should.have.property("totalcount");
                     if (resp.body.list.length>0){
                         for(i=0;i<resp.body.list.length;i++){
                             expect(resp.body.list[i]).to.have.keys("issuedby","issue_date","_id","batch_id","name","email","updatedby","__v");
@@ -66,7 +66,7 @@ describe("Testing the GET Batch Certificate retirved data",()=> {
         });
         it("To check the sturcture(properties) of the response got",(done)=> {
             chai.request(data.item[11].name)
-            .get("/6097e6babdddc11f4c2d76f5")
+            .get("/608e9c18344e27305887ff22")
             .set(auth, token2)
             .end((err,resp)=> {
                 if(resp.body.empty != true){
@@ -128,7 +128,7 @@ describe("Testing the GET Batch Certificate retirved data",()=> {
         });
         it("To check the value of the properties",(done)=> {
             chai.request(data.item[11].name)
-            .get("/6097e6babdddc11f4c2d76f5")
+            .get("/608e9c18344e27305887ff22")
             .set(auth, token2)
             .end((err,resp)=> {
                 resp.should.have.status(200);

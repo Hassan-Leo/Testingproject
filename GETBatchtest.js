@@ -1,8 +1,8 @@
-let data=require("../Ecert.postman_collection.json");
+let data=require("./Ecert.postman_collection.json");
 let chai = require("chai");
 let expect = require("chai").expect;
 let chaihttp = require("chai-http");
-const token_data=require("../Fetchtoken");
+const token_data=require("./Fetchtoken");
 
 chai.should();
 chai.use(chaihttp);
@@ -12,7 +12,7 @@ raw= {"email":"iyaqoob62@gmail.com","password":"123123"}
 raw1={"email": "hassansiddiqi0@gmail.com", "password":"123123"}
 
 token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MTg1ODU0OTgsImV4cCI6MTYxODc1ODI5OH0.tDWO5PrvlfyTeMz0pJuYNh46ULIY7osCXRuB3_O_7jU"
-token1="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY5Y2I2MTI2NDk4YzE3ODRhOTY3OTciLCJlbWFpbCI6Imhhc3NhbnNpZGRpcWkwQGdtYWlsLmNvbSIsIm5hbWUiOiJIYXNzYW4gQWhtZWQiLCJyb2xlcyI6WyJJc3N1ZXIiLCJBZG1pbiJdLCJvcmdfaWQiOiI2MDYwNmQ4Zjk1NDVhZjM0NTg5ZDY1MDciLCJpYXQiOjE2MjAyMDAxNjMsImV4cCI6MTYyMDM3Mjk2M30.fmkPHsPCpgRRCgVZa-l3PGE_8p917-tVA02QoraT-iI"
+token1="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY5Y2I2MTI2NDk4YzE3ODRhOTY3OTciLCJlbWFpbCI6Imhhc3NhbnNpZGRpcWkwQGdtYWlsLmNvbSIsIm5hbWUiOiJIYXNzYW4gQWhtZWQiLCJyb2xlcyI6WyJJc3N1ZXIiLCJBZG1pbiJdLCJvcmdfaWQiOiI2MDYwNmQ4Zjk1NDVhZjM0NTg5ZDY1MDciLCJpYXQiOjE2MjA1NTQ4ODYsImV4cCI6MTYyMDcyNzY4Nn0.ord4zB4OPk8-zzgaR4qwsaxaihkWE44N1pkaYWvXTGg"
 
 describe("Testing Batch Api for data retrival",()=> {
     describe("Testing GET request for Authorized personnel",()=> {
@@ -84,7 +84,7 @@ describe("Testing Batch Api for data retrival",()=> {
                 }
             })
             done();
-        });
+        })
         it("To Check the values of the properties", (done)=>{
             chai.request(data.item[7].name)
             .get("")

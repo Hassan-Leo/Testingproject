@@ -39,4 +39,42 @@ describe("Checking Errors",()=>{
         });
         done();
     })
+    it("To check the datatypes of the properties in the responsne object", (done)=> {
+        chai.request(data_url.item[7].name)
+        .get("")
+        .set(auth,token2)
+        .end((err,resp)=> {
+            
+            expect(resp.body).to.have.property("totalcount").to.be.a("number");
+            if (resp.body.totalcount>0){
+                for (i=0;i<resp.body.totalcount;i++){
+                    expect(resp.body.list[i].createdby).to.have.keys("name","email","org_name","org_id").to.be.string;
+                    expect(resp.body.list[i].publish).to.have.property("status").to.be.a('boolean');
+                    expect(resp.body.list[i].publish).to.have.property("processing").to.be.a('boolean');
+                    expect(resp.body.list[i].createdby).to.be.a('object');
+                    expect(resp.body.list[i].publish).to.be.a('object');
+                    if(resp.body.list[i].expiry_date == null){
+                        expect(resp.body.list[i].expiry_date).to.be.null;
+                    }
+                    else{
+                        expect(resp.body.list[i].expiry_date).to.be.a('string');
+                    }
+                    expect(resp.body.list[i].created_date).to.be.a('string');
+                    expect(resp.body.list[i]._id).to.be.a('string');
+                    expect(resp.body.list[i].title).to.be.a('string');
+                    expect(resp.body.list[i].batch_name).to.be.a('string');
+                    expect(resp.body.list[i].description).to.be.a('string');
+                    expect(resp.body.list[i].logo).to.be.a('string');
+                    expect(resp.body.list[i].signature).to.be.a('string');
+                    expect(resp.body.list[i].instructor_name).to.be.a('string');
+                    expect(resp.body.list[i].template_id).to.be.a('string');
+                    expect(resp.body.list[i].__v).to.be.a('number');
+                    for (j=0;j<resp.body.list[i].updatedby.length;j++){
+                        expect(resp.body.list[i].updatedby[j]).to.have.keys("name","email","Date").to.be.string;
+                    }
+                }
+            }
+        })
+        done();
+    })
 });
