@@ -10,7 +10,7 @@ chai.use(chaihttp);
 auth="Authorization"
 
 token1="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmRjZDk1NDVhZjM0NTg5ZDY1MDgiLCJlbWFpbCI6Im11aGFtbWFkYWFtaXIuYWoxQGdtYWlsLmNvbSIsIm5hbWUiOiJNdWhhbW1hZCBBYW1pciIsInJvbGVzIjpbIklzc3VlciIsIkFkbWluIl0sIm9yZ19pZCI6IjYwNjA2ZDhmOTU0NWFmMzQ1ODlkNjUwNyIsImlhdCI6MTYyMDIwNTE5MCwiZXhwIjoxNjIwMzc3OTkwfQ.FDLdQmunI-LiuksOFmLF-YXfAnq7UJJXJ-7ya44wlNU"
-token2="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MjAyMDUxMjQsImV4cCI6MTYyMDM3NzkyNH0.NCykIRUHYwnMe_0JphMgEUYymc4SawmE63blNBsoAkI"
+token2="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MjEyNTEzMzUsImV4cCI6MTYyMTQyNDEzNX0.aytA-ZJlD5zAtdgSTvV47s8mebUKTQ9gQ_2v4c2CvgQ"
 
 raw1= {"email":"muhammadaamir.aj1@gmail.com","password":"123123"}
 raw2={"email":"muhammadrafay151@gmail.com", "password":"123123"}
@@ -35,9 +35,9 @@ describe("The testing of the data retrived through Organization API", ()=> {
                 resp.body.should.have.property("totalcount");
                 resp.body.should.have.property("list");
                 if (resp.body.totalcount > 0){
-                    for(i=0;i<resp.body.totalcount;i++){
-                        resp.body.list[i].should.have.all.keys("status","ecertcount","user_limit","_id","name","email","phone","country_code","address","register_date","__v");
-                        resp.body.list[i].status.should.have.property("active");
+                    for(i=0;i<resp.body.list.length;i++){
+                        expect(resp.body.list[i]).to.have.all.keys("status","ecertcount","user_limit","_id","name","email","phone","country_code","address","register_date","__v");
+                        expect(resp.body.list[i].status).to.have.property("active");
                     }
                 }
             })
@@ -50,9 +50,9 @@ describe("The testing of the data retrived through Organization API", ()=> {
             .end((err,resp) =>{
                 resp.body.should.have.property("totalcount").to.be.a('number');
                 resp.body.should.have.property("list").to.be.a('Array');
-                if (resp.body.totalcount > 0){
-                    for(i=0;i<resp.body.totalcount;i++){
-                        expect(resp.body.list[i]).to.be.a('Object');
+                if (resp.body.list.length > 0){
+                    for(i=0;i<resp.body.list.length;i++){
+                        resp.body.list[i].should.be.a('Object');
                         expect(resp.body.list[i]).to.have.property("status").to.be.a('Object')
                         expect(resp.body.list[i].status).to.have.property("active").to.be.a('boolean');
                         expect(resp.body.list[i]).to.have.property("ecertcount").to.be.a('number');
@@ -75,8 +75,8 @@ describe("The testing of the data retrived through Organization API", ()=> {
             .get("")
             .set(auth,token2)
             .end((err,resp) =>{
-                if (resp.body.totalcount > 0){
-                    for(i=0;i<resp.body.totalcount;i++){
+                if (resp.body.list.length > 0){
+                    for(i=0;i<resp.body.list.length;i++){
                         expect(resp.body.list[i].ecertcount).to.be.greaterThanOrEqual(0);
                         expect(resp.body.list[i].user_limit).to.be.greaterThanOrEqual(0);
                         expect(resp.body.list[i].__v).to.be.eq(0);
