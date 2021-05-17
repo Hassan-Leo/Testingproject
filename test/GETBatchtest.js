@@ -1,8 +1,8 @@
-let data=require("./Ecert.postman_collection.json");
+let data=require("../Ecert.postman_collection.json");
 let chai = require("chai");
 let expect = require("chai").expect;
 let chaihttp = require("chai-http");
-const token_data=require("./Fetchtoken");
+const token_data=require("../Fetchtoken");
 
 chai.should();
 chai.use(chaihttp);
@@ -92,7 +92,7 @@ describe("Testing Batch Api for data retrival",()=> {
             .get("")
             .set(auth,token)
             .end((err,resp)=> {
-                //expect(resp.body.totalcount).to.be.greaterThanOrEqual(0);
+                expect(resp.body.totalcount).to.be.greaterThanOrEqual(0);
                 if (resp.body.totalcount>0){
                     for (i=0;i<resp.body.totalcount;i++){
                         expect(resp.body.list[i].__v).to.be.equal(0);

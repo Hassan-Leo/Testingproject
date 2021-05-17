@@ -40,7 +40,7 @@ describe("Testing the GET Batch Certificate retirved data",()=> {
             .set(auth, token2)
             .end((err,resp)=> {
                 if(resp.body.empty != true){
-/*                     resp.body.should.have.property("list");
+/*                  resp.body.should.have.property("list");
                     resp.body.should.have.property("batch");
                     resp.body.should.have.property("totalcount"); */
                     if (resp.body.list.length>0){
