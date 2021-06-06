@@ -12,7 +12,7 @@ raw1= {"email":"iyaqoob62@gmail.com","password":"123123"}
 raw2={"email": "hassansiddiqi0@gmail.com", "password":"123123"}
 
 token1="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNmNhNmM3OGExMTRiZThkMjQ4MDYiLCJlbWFpbCI6Im11aGFtbWFkcmFmYXkxNTFAZ21haWwuY29tIiwibmFtZSI6IlJhZmF5Iiwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE2MTg1ODU0OTgsImV4cCI6MTYxODc1ODI5OH0.tDWO5PrvlfyTeMz0pJuYNh46ULIY7osCXRuB3_O_7jU"
-token2="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY5Y2I2MTI2NDk4YzE3ODRhOTY3OTciLCJlbWFpbCI6Imhhc3NhbnNpZGRpcWkwQGdtYWlsLmNvbSIsIm5hbWUiOiJIYXNzYW4gQWhtZWQiLCJyb2xlcyI6WyJJc3N1ZXIiLCJBZG1pbiJdLCJvcmdfaWQiOiI2MDYwNmQ4Zjk1NDVhZjM0NTg5ZDY1MDciLCJpYXQiOjE2MjA1NTQ4ODYsImV4cCI6MTYyMDcyNzY4Nn0.ord4zB4OPk8-zzgaR4qwsaxaihkWE44N1pkaYWvXTGg"
+token2="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDYwNzNlNGIyYmVmZTQ4NDg4NGMyMTAiLCJlbWFpbCI6Iml5YXFvb2I2MkBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYW1tYWQgSXNtYWlsIiwicm9sZXMiOlsiSXNzdWVyIiwiQWRtaW4iXSwib3JnX2lkIjoiNjA2MDZkMGE5NTQ1YWYzNDU4OWQ2NTA1IiwiaWF0IjoxNjIxMjUxMzQ1LCJleHAiOjE2MjE0MjQxNDV9.KflJIrX08v0jotyp3iizH5cdnREhcrRv_c6VN_MMPaI"
 
 describe("Testing the GET Batch Certificate retirved data",()=> {
     describe("When Authorized user access data testing the response",()=> {
@@ -40,9 +40,9 @@ describe("Testing the GET Batch Certificate retirved data",()=> {
             .set(auth, token2)
             .end((err,resp)=> {
                 if(resp.body.empty != true){
-/*                  resp.body.should.have.property("list");
+                    resp.body.should.have.property("list");
                     resp.body.should.have.property("batch");
-                    resp.body.should.have.property("totalcount"); */
+                    resp.body.should.have.property("totalcount");
                     if (resp.body.list.length>0){
                         for(i=0;i<resp.body.list.length;i++){
                             expect(resp.body.list[i]).to.have.keys("issuedby","issue_date","_id","batch_id","name","email","updatedby","__v");
